@@ -35,5 +35,14 @@ recent_transactions = load_json_file('transactions.json')
 # Load purchase orders
 purchase_orders = load_json_file('purchase_orders.json')
 
+# Restock orders are created at runtime, so the file may not exist yet
+RESTOCK_ORDERS_FILE = os.path.join(DATA_DIR, 'restock_orders.json')
+restock_orders = load_json_file('restock_orders.json') if os.path.exists(RESTOCK_ORDERS_FILE) else []
+
+def save_restock_orders():
+    """Persist restock orders to disk"""
+    with open(RESTOCK_ORDERS_FILE, 'w') as f:
+        json.dump(restock_orders, f, indent=2)
+
 # All data is now loaded from JSON files in the data/ directory
 # This allows for easier maintenance and updates of the sample data
