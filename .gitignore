@@ -53,3 +53,6 @@ logs/
 
 # Environment variables
 .env
+
+# Restock orders written at runtime by the API
+server/data/restock_orders.json
